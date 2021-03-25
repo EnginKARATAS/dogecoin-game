@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sockets Example</title>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="p5.functions.js"></script>
+
+    <script src="player.js"></script>
+    <script type="text/javascript" src="sketch.js"></script>
+
+    <script src="borarder.js"></script>
+    <style>
+      body {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <script>
+    var socket = io();
+  </script>
+</html>
