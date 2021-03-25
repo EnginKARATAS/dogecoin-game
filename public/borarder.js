@@ -2,16 +2,16 @@ class Boarder {
     constructor() {
         this.xBoarderSize = 80;
         this.boarderPos = width - this.xBoarderSize;
-        this.clientCounter = 0;
+        this.rectCounter = 0;
 
-        this.clientY = 20;
+        this.rectY = 20;
 
-        this.clients = [];
+        this.rects = [];
 
-        this.showClients = function () {
+        this.showRects = function () {
             fill(128, 0, 128);
-            for (let i = 0; i < this.clients.length; i++) {
-                text(this.clients[i], this.boarderPos + 14, this.clientY + 10 + i * 10);
+            for (let i = 0; i < this.rects.length; i++) {
+                text(this.rects[i], this.boarderPos + 14, this.rectY + 10 + i * 10);
             }
         }
         this.showBoarder = function () {
@@ -25,19 +25,27 @@ class Boarder {
 
     show() {
         this.showBoarder();
-        this.showClients();
+        this.showRects();
     }
 
 
-    addClientToBoarder(clientId) {
-        if (!this.clients.includes(clientId)) {
-            this.clients.push(clientId);
+    addRectToBoarder(rectId) {
+        if (!this.rects.includes(rectId)) {
+            this.rects.push(rectId);
         }
+
     }
 
-    deleteUser(clientId) {
-        let disconnectedIdIndex = this.clients.indexOf(clientId);
-        this.clients.splice(disconnectedIdIndex, 1);
+    deleteUser(rectId) {
+        console.log("deleteuser calisti silmemiz gereken rectId = "+ rectId);
+        console.log("rect dizisi elamanları: ");
+        console.log(rects);
+        let disconnectedIdIndex = this.rects.indexOf(rectId);
+        console.log(disconnectedIdIndex);
+        this.rects.splice(disconnectedIdIndex, 1);
+
+        console.log("(silindi) rect dizisi elamanları: ");
+        console.log(rects);
         
     }
 

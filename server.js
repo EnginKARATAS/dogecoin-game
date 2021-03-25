@@ -15,9 +15,9 @@ let io = socket(server);
 
 //all clients
 let rects = [];
+let cookies = [];
 
 // Setup a connection
-io.sockets.on('connection', newConnection);
 
 function Rect(id, x, y) {
   this.id = id;
@@ -25,30 +25,49 @@ function Rect(id, x, y) {
   this.y = y;
 }
 
-setInterval(heartbeat, 1000);
+setInterval(heartbeat, 500);
 
 function heartbeat() {
-  io.sockets.emit('heartbeat', rects);
+  io.sockets.emit('heartbeat', (rects, cookies));
 }
 
+io.on('connection', socket => {
+  let id = socket.id.substring(1, 7);
 
-function newConnection(socket) {
+  socket.on('disconnect', () => {
 
-  let id = socket.id;
-  send('new_client_boarder', id);
+    for (let i = 0; i < rects.length; i++) {
+      const isDeleteId = rects[i].id;
+      if (isDeleteId == id) {
+        rects.splice(i, 1);
+      }
+    }
+
+    send('disconn', id)
+  });
 
   socket.on('start', data => {
-    console.log(socket.id + ' ' + data.x + ' ' + data.y);
-
+    // console.log(id + ' ' + data.x + ' ' + data.y);
     let rect = new Rect();
-    rect.id = socket.id;
+    rect.id = id;
     rect.x = data.x;
     rect.y = data.y;
+    rect.r = data.r;
 
     rects.push(rect);
-    socket.on('disconnect', disc => {
-      socket.emit('discon', socket.id)
-    });
+
+  });
+
+  socket.on('start2', data => {
+
+    let cookie = {
+      x:55,
+      y:55,
+      r:6
+    }
+    for (let i = 0; i < 10; i++) {
+      cookies.push("cookie");
+    }
 
   });
 
@@ -65,17 +84,22 @@ function newConnection(socket) {
     rect.r = data.r;
   });
 
+  socket.on('update2', data => {
+    cookies = data;
+    console.log(cookies);
+  });
+
   function send(vareible, message) {
     io.emit(vareible, message);
   }
-  console.log("socket id : " + socket.id);
+
   //when mouse message comes, socket.on('mouse',mouseMsg) working
   socket.on('mouse', mouseMsg)
 
   function mouseMsg(data) {
-    console.log(data);
     socket.broadcast.emit('mouse', data);
     //do can be useful for online pacman game?
     // io.socket.emit('mouse', data)
   }
-}
+
+});
