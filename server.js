@@ -37,7 +37,7 @@ function newConnection(socket) {
   let id = socket.id;
   send('new_client_boarder', id);
 
-  socket.on('start', data=>{
+  socket.on('start', data => {
     console.log(socket.id + ' ' + data.x + ' ' + data.y);
 
     let rect = new Rect();
@@ -46,8 +46,13 @@ function newConnection(socket) {
     rect.y = data.y;
 
     rects.push(rect);
+    socket.on('disconnect', disc => {
+      socket.emit('discon', socket.id)
+    });
+
   });
-  
+
+
   socket.on('update', data => {
     let rect;
     for (let i = 0; i < rects.length; i++) {

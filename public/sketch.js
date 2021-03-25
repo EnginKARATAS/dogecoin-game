@@ -6,18 +6,21 @@ var player;
 let rects = [];
 function setup() {
   createCanvas(400, 400);
+  
   // Start a socket connection to the server
   socket = io.connect('http://localhost:3000');
 
-  socket.on('new_client_boarder', client => {
-    boarder.addClientToBoarder(client);
-
-    socket.on('heartbeat', function(data) {
-      //console.log(data);
-      rects = data;
-      console.log(rects);
-    });
+  
+  socket.on('heartbeat', function(data) {
+    //console.log(data);
+    rects = data;
+    for (var i = 0; i < rects.length; i++)
+    boarder.addClientToBoarder(rects[i].id);
   });
+
+  socket.on('discon', clientId => {
+    boarder.deleteUser(clientId);
+  })
 
   socket.on('mouse',
     // When we receive data
@@ -45,13 +48,12 @@ socket.emit('start', data);
 function draw() {
   background(200, 222, 20);
 
-  boarder.showBoarder();
+  boarder.show();
   player.show();
 
   for (let i = 0; i < rects.length; i++) {
     fill(0)
     rect(rects[i].x, rects[i].y, 20, 20);
-    
   }
 
   let playerData = {
@@ -68,13 +70,12 @@ function mouseDragged() {
   noStroke();
   ellipse(mouseX, mouseY, 20, 20);
   console.log("sendmouse: " + mouseX + " " + mouseY);
-
  
-
   var data = {
     x: mouseX,
     y: mouseY
   };
+
   //I am a emmitter, and I am seperating all of my "data"
   socket.emit('mouse', data);
 
