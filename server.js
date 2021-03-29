@@ -1,8 +1,7 @@
 // Setup express web server and listen on port 3000
 let express = require('express');
 let app = express();
-let port = Number(process.env.PORT || 3000);
-let server = app.listen(port);
+var server = require('http').createServer(app).listen(process.env.PORT || 3000);
 
 app.use(express.static('public'));
 console.log("My socket server is running on port " + port);
