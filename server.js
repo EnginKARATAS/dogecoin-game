@@ -18,17 +18,56 @@ let rects = [];
 let cookies = [];
 
 // Setup a connection
-
 function Rect(id, x, y) {
   this.id = id;
   this.x = x;
   this.y = y;
 }
 
+
+function Cookie() {
+  this.y = Math.floor(Math.random() * 401);;
+  this.x = Math.floor(Math.random() * 401);;
+  this.r = 6;
+
+  this.eats = function (other) {
+    let d = dist(this.x, this.y, other.x, other.y);
+    if (d < this.r + other.r) {
+      var sum = PI * this.r * this.r + PI * other.r * other.r;
+      //this.r += other.r;
+      return true;
+    } else {
+      return false;
+    }
+  };
+}
+for (let i = 0; i < 10; i++) {
+  cookies.push(new Cookie());
+}
+
+ 
+
 setInterval(heartbeat, 500);
 
 function heartbeat() {
-  io.sockets.emit('heartbeat', (rects, cookies));
+  io.sockets.emit('heartbeat', rects);
+  checkIfEat();
+
+  function checkIfEat() {
+    for (let i = 0; i < rects.length; i++) {
+      const rectX = rects[i].x;
+      const rectY = rects[i].y;
+
+      for (let j = 0; j < cookies.length; j++) {
+        const cookiesX = cookies[j].x;
+        const cookiesY = cookies[j].y;
+        if (Math.abs(rectX - cookiesX) < 10 && Math.abs(rectY - cookiesY) < 10) {
+          cookies.splice(j,1);
+        }
+      }
+    }
+  }
+  io.sockets.emit('heartbeat', rects, cookies);
 }
 
 io.on('connection', socket => {
@@ -42,8 +81,7 @@ io.on('connection', socket => {
         rects.splice(i, 1);
       }
     }
-
-    send('disconn', id)
+    socket.emit('disconn', id)
   });
 
   socket.on('start', data => {
@@ -58,22 +96,13 @@ io.on('connection', socket => {
 
   });
 
-  socket.on('start2', data => {
 
-    let cookie = {
-      x:55,
-      y:55,
-      r:6
-    }
-    for (let i = 0; i < 10; i++) {
-      cookies.push("cookie");
-    }
-
-  });
 
 
   socket.on('update', data => {
     let rect;
+    console.log("update");
+    console.log(data);
     for (let i = 0; i < rects.length; i++) {
       if (id == rects[i].id) {
         rect = rects[i];
@@ -84,14 +113,10 @@ io.on('connection', socket => {
     rect.r = data.r;
   });
 
-  socket.on('update2', data => {
-    cookies = data;
-    console.log(cookies);
-  });
 
-  function send(vareible, message) {
-    io.emit(vareible, message);
-  }
+
+
+
 
   //when mouse message comes, socket.on('mouse',mouseMsg) working
   socket.on('mouse', mouseMsg)

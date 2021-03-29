@@ -1,7 +1,7 @@
 
 function Cookie() {
-    this.y = random(height);
-    this.x = random(width);
+    this.y = Math.floor(Math.random() * 401);;
+    this.x = Math.floor(Math.random() * 401);;
     this.r = 6;
     this.vel = createVector(0, 0);
 

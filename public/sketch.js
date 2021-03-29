@@ -1,5 +1,5 @@
 
- var socket;
+var socket;
 var boarder;
 var player;
 let rects = [];
@@ -19,14 +19,14 @@ function setup() {
   // }
 
   // Start a socket connection to the server
-  socket = io.connect('http://localhost:3000'); 
+  socket = io.connect('http://localhost:3000');
 
 
-  socket.on('heartbeat', function (data,data2) {
-    //console.log(data);
-    rects = data;
-    cookies = data2
-    for (var i = 0; i < rects.length; i++)
+  socket.on('heartbeat', (_rects, _cookies)=>{
+    rects = _rects;
+    cookies = _cookies
+    console.log(cookies);
+    for (let i = 0; i < rects.length; i++)
       boarder.addRectToBoarder(rects[i].id);
   });
 
@@ -35,7 +35,6 @@ function setup() {
   });
 
   socket.on('mouse', data => {
-    console.log("respond: " + data.y + " " + data.y);
     fill(0, 0, 255);
     noStroke();
     ellipse(data.x, data.y, 20, 20);
@@ -49,44 +48,40 @@ function setup() {
     y: player.y,
     r: player.r
   }
-  
-  let nothing ;
-  socket.emit('start', data); 
-  socket.emit('start2', nothing);   
+
+  socket.emit('start', data);
 
 
 }
 
 function draw() {
   background(200, 222, 20);
-  console.log(cookies);
   boarder.show();
   player.show();
   player.update(way);
-	way = 5;
+  way = 5;
 
   for (let j = 0; j < cookies.length; j++) {
-    cookies[j].show();
-    if (cookies[j].eats(player)){
-      cookies.splice(j, 1);
-      player.r += 6;      
-    }
+    ellipse(cookies[j].x,cookies[j].y,cookies[j].r,cookies[j].r);
+    // if (cookies[j].eats(player)) {
+    //   cookies.splice(j, 1);
+    //   player.r += 6;
+    // }
   }
 
-  
+
 
 
   for (let i = 0; i < rects.length; i++) {
     fill(0)
-    fill(random(255),random(255),random(255));
-    rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r, );
+    fill(random(255), random(255), random(255));
+    rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r,);
   }
 
-  console.log(cookies);
   for (let i = 0; i < cookies.length; i++) {
     fill(0)
-  
-    ellipse(cookies[i].x, cookies[i].y, cookies[i].r, cookies[i].r, );
+
+    ellipse(cookies[i].x, cookies[i].y, cookies[i].r, cookies[i].r,);
   }
 
   let playerData = {
@@ -96,7 +91,6 @@ function draw() {
   }
 
   socket.emit('update', playerData);
-  socket.emit('update2',  cookies);
 }
 
 function mouseDragged() {
@@ -104,7 +98,6 @@ function mouseDragged() {
   fill(255);
   noStroke();
   ellipse(mouseX, mouseY, 20, 20);
-  console.log("sendmouse: " + mouseX + " " + mouseY);
 
   var data = {
     x: mouseX,
