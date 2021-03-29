@@ -1,8 +1,8 @@
-// Setup express web server and listen on port 3000
 let express = require('express');
 let app = express();
-var server = require('http').createServer(app).listen(process.env.PORT || 3000);
-
+let port = Number(process.env.PORT || 3000);
+let server = app.listen(port);
+  
 app.use(express.static('public'));
 console.log("My socket server is running on port " + port);
 
@@ -100,8 +100,6 @@ io.on('connection', socket => {
 
   socket.on('update', data => {
     let rect;
-    console.log("update");
-    console.log(data);
     for (let i = 0; i < rects.length; i++) {
       if (id == rects[i].id) {
         rect = rects[i];
