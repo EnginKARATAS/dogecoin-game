@@ -20,12 +20,13 @@ function setup() {
 
   // Start a socket connection to the server
   socket = io.connect('http://localhost:3000');
-
-
+  
+  socket.on('cookies',data=>{
+    cookies = data;
+  })
   socket.on('heartbeat', (_rects, _cookies)=>{
     rects = _rects;
-    cookies = _cookies
-    console.log(cookies);
+    cookies = _cookies;
     for (let i = 0; i < rects.length; i++)
       boarder.addRectToBoarder(rects[i].id);
   });
@@ -34,11 +35,7 @@ function setup() {
     boarder.deleteUser(rectId);
   });
 
-  socket.on('mouse', data => {
-    fill(0, 0, 255);
-    noStroke();
-    ellipse(data.x, data.y, 20, 20);
-  });
+  
   boarder = new Boarder();
   player = new Player();
 
@@ -51,7 +48,9 @@ function setup() {
 
   socket.emit('start', data);
 
-
+  socket.on('grove',()=>{
+    player.r +=10;
+  })
 }
 
 function draw() {
@@ -60,28 +59,23 @@ function draw() {
   player.show();
   player.update(way);
   way = 5;
-
-  for (let j = 0; j < cookies.length; j++) {
-    ellipse(cookies[j].x,cookies[j].y,cookies[j].r,cookies[j].r);
-    // if (cookies[j].eats(player)) {
-    //   cookies.splice(j, 1);
-    //   player.r += 6;
-    // }
-  }
-
-
-
-
+ 
+//show users
   for (let i = 0; i < rects.length; i++) {
     fill(0)
     fill(random(255), random(255), random(255));
-    rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r,);
+    rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r);
   }
-
-  for (let i = 0; i < cookies.length; i++) {
+//show, check cookies
+ 
+  for (let i = 0; i <cookies.length; i++) {
+    if (cookies[i].eats(player) && cookies.length> 0) {
+      socket.emit('isEatCookie',i)
+    }
+    console.log(i);
     fill(0)
-
     ellipse(cookies[i].x, cookies[i].y, cookies[i].r, cookies[i].r,);
+    
   }
 
   let playerData = {
@@ -93,18 +87,5 @@ function draw() {
   socket.emit('update', playerData);
 }
 
-function mouseDragged() {
-  // Draw some white circles
-  fill(255);
-  noStroke();
-  ellipse(mouseX, mouseY, 20, 20);
-
-  var data = {
-    x: mouseX,
-    y: mouseY
-  };
-
-  //I am a emmitter, and I am seperating all of my "data"
-  socket.emit('mouse', data);
-
-}
+ 
+ 

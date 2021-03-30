@@ -13,3 +13,4 @@ function keyPressed() {
 		way = 3;
 	}
 }
+
