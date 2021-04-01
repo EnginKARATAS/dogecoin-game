@@ -13,7 +13,3 @@ function keyPressed() {
 		way = 3;
 	}
 }
-
-// socket.on('selam',id=>{
-// 	console.log(id);
-// })

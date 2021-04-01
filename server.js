@@ -1,31 +1,27 @@
-const path = require('path');
-const http = require('http');
-const express = require('express');
-const socketIO = require('socket.io');
+// Setup express web server and listen on port 3000
+let express = require('express');
+let app = express();
+let port = Number(process.env.PORT || 3000);
+let server = app.listen(port);
 
-const publicPath = path.join(__dirname, '/public');
-console.log(publicPath);
-const port = process.env.PORT || 3000;
-var app = express();
-var server = http.createServer(app);
-var io = socketIO(server);
-console.log("listening on port" + 3000);
-app.use(express.static(publicPath));
+app.use(express.static('public'));
+console.log("My socket server is running on port " + port);
 
-server.listen(port, () => {
-  console.log(`Server is up on ${port}`);
-});
+// Start socket.io
+let socket = require('socket.io');
+
+// Connect it to the web server
+let io = socket(server);
 
 //all clients
 let rects = [];
 let cookies = [];
 
 // Setup a connection
-function Rect(id, x, y, r) {
+function Rect(id, x, y) {
   this.id = id;
   this.x = x;
   this.y = y;
-  this.r = r;
 }
 
 
@@ -33,55 +29,53 @@ function Cookie() {
   this.y = Math.floor(Math.random() * 401);;
   this.x = Math.floor(Math.random() * 401);;
   this.r = 6;
+
+  this.eats = function (other) {
+    let d = dist(this.x, this.y, other.x, other.y);
+    if (d < this.r + other.r) {
+      var sum = PI * this.r * this.r + PI * other.r * other.r;
+      //this.r += other.r;
+      return true;
+    } else {
+      return false;
+    }
+  };
 }
 for (let i = 0; i < 10; i++) {
   cookies.push(new Cookie());
 }
-io.sockets.emit('cookies', cookies);
-
 
 setInterval(heartbeat, 33);
 
 function heartbeat() {
+  // console.log("cookies");
+  // console.log(cookies);
+  // console.log("rects");
+  // console.log(rects);
   io.sockets.emit('heartbeat', rects, cookies);
 
-  // checkIfEat();
 
-  function checkIfEat() {
-    let rect;
-    for (let i = 0; i < rects.length; i++) {
-
-      const rectX = rect.x;
-      const rectY = rect.y;
-      for (let j = 0; j < cookies.length; j++) {
-        const cookiesX = cookies[j].x;
-        const cookiesY = cookies[j].y;
-        if (Math.abs(rectX - cookiesX) < 10 && Math.abs(rectY - cookiesY) < 10) {
-          socket.emit("grove",(""));
-          cookies.splice(j, 1);
-        }
-      }
-    }
-  }
 }
 
 io.on('connection', socket => {
+  console.log(rects);
   let id = socket.id.substring(1, 7);
 
   socket.on('disconnect', () => {
-
     for (let i = 0; i < rects.length; i++) {
-      const isDeleteId = rects[i].id;
-      if (isDeleteId == id) {
+      let value = rects[i].id;
+      let isId = value == id
+      if (isId) {
+        console.log("i:" + i + "--");
         rects.splice(i, 1);
       }
     }
-    socket.emit('disconn', id)
   });
 
-  socket.on('isEatCookie', i=> {
-    cookies.splice(i,1);
+  socket.on("eated", index => {
+    cookies.splice(index, 1);
   });
+
 
   socket.on('start', data => {
     // console.log(id + ' ' + data.x + ' ' + data.y);
@@ -92,11 +86,11 @@ io.on('connection', socket => {
     rect.r = data.r;
 
     rects.push(rect);
-
   });
+
   socket.on('update', data => {
     let rect;
-    for (let i = 0; i < rects.length; i++) {
+    for (let i = rects.length - 1; i >= 0; i--) {
       if (id == rects[i].id) {
         rect = rects[i];
       }

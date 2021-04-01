@@ -11,7 +11,7 @@ class Boarder {
         this.showRects = function () {
             fill(128, 0, 128);
             for (let i = 0; i < this.rects.length; i++) {
-                text(this.rects[i], this.boarderPos + 14, this.rectY + 10 + i * 10);
+                text(this.rects[i].id, this.boarderPos + 14, this.rectY + 10 + i * 10);
             }
         }
         this.showBoarder = function () {
@@ -23,32 +23,13 @@ class Boarder {
         }
     }
 
+    assign(){
+        this.rects = rects;
+    }
+
     show() {
         this.showBoarder();
         this.showRects();
     }
-
-
-    addRectToBoarder(rectId) {
-        if (!this.rects.includes(rectId)) {
-            this.rects.push(rectId);
-        }
-
-    }
-
-    deleteUser(rectId) {
-        console.log("deleteuser calisti silmemiz gereken rectId = "+ rectId);
-        console.log("rect dizisi elamanları: ");
-        console.log(rects);
-        let disconnectedIdIndex = this.rects.indexOf(rectId);
-        console.log(disconnectedIdIndex);
-        this.rects.splice(disconnectedIdIndex, 1);
-
-        console.log("(silindi) rect dizisi elamanları: ");
-        console.log(rects);
-        
-    }
-
-
 
 }

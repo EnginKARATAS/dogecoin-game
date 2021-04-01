@@ -3,8 +3,13 @@ class Player {
     constructor() {
         this.r = 10;
         this.x = 20;
-        this.y = random(20, height * 0.8);
+        this.y = floor(random(20, height * 0.8));
         this.color = color(random(0, 100), random(0, 100), random(0, 100));
+    }
+
+    eat() {
+        this.r += 10;
+        return true;
     }
 
     show() {
@@ -33,7 +38,6 @@ class Player {
 
     move() {
         this.color = color(random(0, 100), random(0, 100), random(0, 100));
-         
     }
 
 }
