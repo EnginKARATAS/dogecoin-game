@@ -14,3 +14,6 @@ function keyPressed() {
 	}
 }
 
+// socket.on('selam',id=>{
+// 	console.log(id);
+// })

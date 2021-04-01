@@ -40,7 +40,7 @@ for (let i = 0; i < 10; i++) {
 io.sockets.emit('cookies', cookies);
 
 
-setInterval(heartbeat, 1000);
+setInterval(heartbeat, 33);
 
 function heartbeat() {
   io.sockets.emit('heartbeat', rects, cookies);

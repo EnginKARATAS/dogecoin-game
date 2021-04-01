@@ -66,13 +66,14 @@ function draw() {
     fill(random(255), random(255), random(255));
     rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r);
   }
+
 //show, check cookies
- 
-  for (let i = 0; i <cookies.length; i++) {
-    if (cookies[i].eats(player) && cookies.length> 0) {
+  for (let i = 0; i < cookies.length; i++) {
+    let d = dist(cookies[i].x, cookies[i].y, player.x, player.y);
+    if (d < cookies[i].r + player.r) {
       socket.emit('isEatCookie',i)
+      console.log("yenilen cookie"+i);
     }
-    console.log(i);
     fill(0)
     ellipse(cookies[i].x, cookies[i].y, cookies[i].r, cookies[i].r,);
     
