@@ -13,12 +13,21 @@
 
     <script src="borarder.js"></script>
     <script src="cookie.js"></script>
+    <script src="controller/controller.js"></script>
     <style>
       body {
         padding: 20px;
       }
     </style>
   </head>
+  <body>
+    <div style="text-align:center;width:480px;">
+      <button onclick="moveup()">UP</button><br><br>
+      <button onclick="moveleft()">LEFT</button>
+      <button onclick="moveright()">RIGHT</button><br><br>
+      <button onclick="movedown()">DOWN</button>
+    </div>
+  </body>
   <script>
     var socket = io();
   </script>
