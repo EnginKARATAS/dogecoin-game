@@ -24,7 +24,6 @@ function Rect(id, x, y) {
   this.y = y;
 }
 
-
 function Cookie() {
   this.y = Math.floor(Math.random() * 401);;
   this.x = Math.floor(Math.random() * 401);;
@@ -41,6 +40,7 @@ function Cookie() {
     }
   };
 }
+
 for (let i = 0; i < 10; i++) {
   cookies.push(new Cookie());
 }
@@ -53,8 +53,6 @@ function heartbeat() {
   // console.log("rects");
   // console.log(rects);
   io.sockets.emit('heartbeat', rects, cookies);
-
-
 }
 
 io.on('connection', socket => {
@@ -108,5 +106,4 @@ io.on('connection', socket => {
     //do can be useful for online pacman game?
     // io.socket.emit('mouse', data)
   }
-
 });
