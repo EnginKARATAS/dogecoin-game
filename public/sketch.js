@@ -8,7 +8,7 @@ let cookies = [];
 let way = 4; //0:up 1:right 2:down 3:left
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1024, 768);
   // setTimeout(()=>{console.log("world2!")}, 4000)
 
   // for (let i = 0; i < 10; i++) {
@@ -73,9 +73,6 @@ function draw() {
     // }
   }
 
-
-
-
   for (let i = 0; i < rects.length; i++) {
     fill(0)
     fill(random(255), random(255), random(255));
@@ -96,18 +93,4 @@ function draw() {
   socket.emit('update', playerData);
 }
 
-function mouseDragged() {
-  // Draw some white circles
-  fill(255);
-  noStroke();
-  ellipse(mouseX, mouseY, 20, 20);
-
-  var data = {
-    x: mouseX,
-    y: mouseY
-  };
-
-  //I am a emmitter, and I am seperating all of my "data"
-  socket.emit('mouse', data);
-
-}
+ 

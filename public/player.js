@@ -8,7 +8,7 @@ class Player {
     }
 
     eat() {
-        this.r += 10;
+        this.r += 3;
         return true;
     }
 

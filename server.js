@@ -25,8 +25,8 @@ function Rect(id, x, y) {
 }
 
 function Cookie() {
-  this.y = Math.floor(Math.random() * 401);;
-  this.x = Math.floor(Math.random() * 401);;
+  this.y = Math.floor(Math.random() * 1025);;
+  this.x = Math.floor(Math.random() * 769);;
   this.r = 6;
 
   this.eats = function (other) {
@@ -41,7 +41,7 @@ function Cookie() {
   };
 }
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
   cookies.push(new Cookie());
 }
 
@@ -70,8 +70,10 @@ io.on('connection', socket => {
     }
   });
 
+
   socket.on("eated", index => {
     cookies.splice(index, 1);
+    cookies.push(new Cookie());
   });
 
 
