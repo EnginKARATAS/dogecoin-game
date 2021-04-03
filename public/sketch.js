@@ -1,5 +1,5 @@
 
-var socket;
+var socket = io();
 var boarder;
 var player;
 let rects = [];
@@ -16,7 +16,6 @@ function setup() {
   // }
 
   // Start a socket connection to the server
-  socket = io.connect('http://localhost:3000');
 
   socket.on('heartbeat', (_rects, _cookies) => {
     rects = _rects;
