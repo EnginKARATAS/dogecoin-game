@@ -28,17 +28,6 @@ function Cookie() {
   this.y = Math.floor(Math.random() * 700);;
   this.x = Math.floor(Math.random() * 500);;
   this.r = 6;
-
-  this.eats = function (other) {
-    let d = dist(this.x, this.y, other.x, other.y);
-    if (d < this.r + other.r) {
-      var sum = PI * this.r * this.r + PI * other.r * other.r;
-      //this.r += other.r;
-      return true;
-    } else {
-      return false;
-    }
-  };
 }
 
 for (let i = 0; i < 100; i++) {
