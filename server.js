@@ -38,8 +38,9 @@ setInterval(heartbeat, 33);
 setInterval(addCookies,2000);
 
 function addCookies(){
-  
-  cookies.push(new Cookie());
+  if (cookies.length < 150) {
+    cookies.push(new Cookie());
+  }
   
 };
 function heartbeat() {
