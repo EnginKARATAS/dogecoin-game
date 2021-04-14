@@ -56,10 +56,10 @@ function draw() {
     for (let j = cookies.length - 1; j >= 0; j--) {
       const cookiesX = cookies[j].x;
       const cookiesY = cookies[j].y;
-      if (Math.abs(player.x - cookiesX) < 10 && Math.abs(player.y - cookiesY) < 10) {
+      if (Math.abs(player.x+player.r/2 - cookiesX) < 5+player.r/2 && Math.abs(player.y+player.r/2 - cookiesY) < 5+player.r/2) {
         console.log(j);
         cookies.splice(j, 1);
-        socket.emit("eated", j);
+        socket.emit("eated", j,player.x,player.y);
         player.eat()
       }
     }

@@ -1,6 +1,6 @@
 class Boarder {
     constructor() {
-        this.xBoarderSize = 80;
+        this.xBoarderSize = 140;
         this.boarderPos = width - this.xBoarderSize;
         this.rectCounter = 0;
 
@@ -11,7 +11,7 @@ class Boarder {
         this.showRects = function () {
             fill(128, 0, 128);
             for (let i = 0; i < this.rects.length; i++) {
-                text(this.rects[i].id, this.boarderPos + 14, this.rectY + 10 + i * 10);
+                text(this.rects[i].id + " :" + this.rects[i].r , this.boarderPos + 14, this.rectY + 10 + i * 10);
             }
         }
         this.showBoarder = function () {
@@ -19,7 +19,7 @@ class Boarder {
             rect(this.boarderPos, 0, this.xBoarderSize, 150);
             fill(0);
             textSize(12);
-            text("users", this.boarderPos + 14, 14);
+            text("leaderboard", this.boarderPos + 14, 14);
         }
     }
 

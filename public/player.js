@@ -14,7 +14,7 @@ class Player {
 
     show() {
         translate(width/2, height/2);
-        scale((64 /player.r)-0.2 );
+        scale( 128 /player.r);
         translate(-player.x,-player.y);
         rect(this.x, this.y, this.r, this.r);
     }
