@@ -8,7 +8,7 @@ let cookies = [];
 let way = 4; //0:up 1:right 2:down 3:left
 
 function setup() {
-  createCanvas(1000, 500 );
+  createCanvas(1200, 480);
   // setTimeout(()=>{console.log("world2!")}, 4000)
 
   // for (let i = 0; i < 10; i++) {
@@ -49,20 +49,20 @@ function draw() {
   way = 5;
   checkIfEat();
   //------------------------------------------------
- 
- 
- 
+
+
+
   function checkIfEat() {
-      for (let j = cookies.length-1; j>=0 ; j--) {
-        const cookiesX = cookies[j].x;
-        const cookiesY = cookies[j].y;
-        if (Math.abs(player.x - cookiesX) < 10 && Math.abs(player.y - cookiesY) < 10) {
-          console.log(j);
-          cookies.splice(j, 1);
-          socket.emit("eated",j);
-          player.eat()
-        }
+    for (let j = cookies.length - 1; j >= 0; j--) {
+      const cookiesX = cookies[j].x;
+      const cookiesY = cookies[j].y;
+      if (Math.abs(player.x - cookiesX) < 10 && Math.abs(player.y - cookiesY) < 10) {
+        console.log(j);
+        cookies.splice(j, 1);
+        socket.emit("eated", j);
+        player.eat()
       }
+    }
   }
 
   //------------------------------------------------
@@ -94,4 +94,3 @@ function draw() {
   socket.emit('update', playerData);
 }
 
- 

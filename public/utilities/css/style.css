@@ -1,0 +1,10 @@
+a {
+    text-decoration: blink;
+    color: darkred;
+    font-family: cursive;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;  
+  }

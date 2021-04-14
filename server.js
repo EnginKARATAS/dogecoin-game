@@ -25,8 +25,8 @@ function Rect(id, x, y) {
 }
 
 function Cookie() {
-  this.y = Math.floor(Math.random() * 700);;
-  this.x = Math.floor(Math.random() * 500);;
+  this.x = Math.floor(Math.random() * 1115);;
+  this.y = Math.floor(Math.random() * 480);;
   this.r = 6;
 }
 
@@ -35,7 +35,13 @@ for (let i = 0; i < 100; i++) {
 }
 
 setInterval(heartbeat, 33);
+setInterval(addCookies,2000);
 
+function addCookies(){
+  
+  cookies.push(new Cookie());
+  
+};
 function heartbeat() {
   // console.log("cookies");
   // console.log(cookies);
