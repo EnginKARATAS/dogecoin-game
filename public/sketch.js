@@ -87,7 +87,6 @@ function draw() {
   for (let i = 0; i < rects.length; i++) {
     fill(0)
     fill(random(255), random(255), random(255));
-    rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r,);
     image(dogeplayer, rects[i].x-16 , rects[i].y-16 );
     dogeplayer.resize(rects[i].r+40, rects[i].r+40);
 

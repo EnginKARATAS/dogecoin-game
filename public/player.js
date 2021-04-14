@@ -19,7 +19,6 @@ class Player {
         zoom = lerp(zoom, newzoom, 0.05);
         scale(zoom);
         translate(-player.x, -player.y);
-        rect(this.x, this.y, this.r, this.r);
     }
 
     update(way) {
