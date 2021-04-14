@@ -30,7 +30,7 @@ function Cookie() {
   this.r = 6;
 }
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 25; i++) {
   cookies.push(new Cookie());
 }
 
@@ -38,7 +38,7 @@ setInterval(heartbeat, 33);
 setInterval(addCookies,2000);
 
 function addCookies(){
-  if (cookies.length < 150) {
+  if (cookies.length < 40) {
     cookies.push(new Cookie());
   }
   
@@ -55,6 +55,11 @@ io.on('connection', socket => {
   console.log(rects);
   let id = socket.id.substring(1, 7);
 
+  socket.on("giveId",()=>{
+    socket.emit("yourId",id)
+    
+  })
+
   socket.on('disconnect', () => {
     for (let i = 0; i < rects.length; i++) {
       let value = rects[i].id;
@@ -66,12 +71,10 @@ io.on('connection', socket => {
     }
   });
 
-
   socket.on("eated", index => {
     cookies.splice(index, 1);
     cookies.push(new Cookie());
   });
-
 
   socket.on('start', data => {
     // console.log(id + ' ' + data.x + ' ' + data.y);

@@ -6,14 +6,15 @@ let rects = [];
 let cookies = [];
 let zoom = 1;
 let way = 4; //0:up 1:right 2:down 3:left
+let id = "";
 
 let doge;
 let dogeplayer;
 function preload() {
-  doge =        loadImage('assets/images/doge.png');
-  dogeplayer =  loadImage('assets/images/dogeplayer.png');
+  doge = loadImage('assets/images/doge.png');
+  dogeplayer = loadImage('assets/images/dogeplayer.png');
 }
- 
+
 
 
 
@@ -26,6 +27,13 @@ function setup() {
   // }
 
   // Start a socket connection to the server
+
+  socket.emit("giveId");
+  socket.on("yourId", _id => { 
+    console.log("your id");
+    console.log(_id);
+    player.id = _id; 
+  });
 
   socket.on('heartbeat', (_rects, _cookies) => {
     rects = _rects;
@@ -87,16 +95,19 @@ function draw() {
   for (let i = 0; i < rects.length; i++) {
     fill(0)
     fill(random(255), random(255), random(255));
-    image(dogeplayer, rects[i].x-16 , rects[i].y-16 );
-    dogeplayer.resize(rects[i].r+40, rects[i].r+40);
+    if (player.id != rects[i].id) {
+      image(dogeplayer, rects[i].x - 25, rects[i].y - 25);
+      dogeplayer.resize(rects[i].r + 40, rects[i].r + 40);
+    }
 
 
   }
 
   for (let i = 0; i < cookies.length; i++) {
     fill(0)
-    image(doge, cookies[i].x-16 , cookies[i].y-16 );
-    
+    image(doge, cookies[i].x - 16, cookies[i].y - 16);
+    doge.resize(cookies[i].r + 16, cookies[i].r + 16);
+
   }
 
   let playerData = {
@@ -108,8 +119,7 @@ function draw() {
   socket.emit('update', playerData);
 
   if (frameCount % 60 == 0) {
-    console.log("asdasds");
-    if (player.r > -1 && player.r < 64) {
+    if (player.r > 10 && player.r < 64) {
       player.r -= 1;
     }
     else if (player.r > 64) {
