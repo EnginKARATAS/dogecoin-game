@@ -2,20 +2,23 @@ class Player {
 
     constructor() {
         this.r = 10;
-        this.x = 20;
-        this.y = floor(random(20, height * 0.8));
+        this.x = width/2;
+        this.y = height/2;
         this.color = color(random(0, 100), random(0, 100), random(0, 100));
     }
-
+    reduceSize(){
+        this.r -=3
+    };
     eat() {
         this.r += 3;
         return true;
     }
-
     show() {
-        translate(width/2, height/2);
-        scale( 128 /player.r);
-        translate(-player.x,-player.y);
+        translate(width / 2, height / 2);
+        let newzoom = 64 / player.r;
+        zoom = lerp(zoom, newzoom, 0.05);
+        scale(zoom);
+        translate(-player.x, -player.y);
         rect(this.x, this.y, this.r, this.r);
     }
 

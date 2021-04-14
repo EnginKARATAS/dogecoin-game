@@ -4,8 +4,18 @@ var boarder;
 var player;
 let rects = [];
 let cookies = [];
-
+let zoom = 1;
 let way = 4; //0:up 1:right 2:down 3:left
+
+let doge;
+let dogeplayer;
+function preload() {
+  doge =        loadImage('assets/images/doge.png');
+  dogeplayer =  loadImage('assets/images/dogeplayer.png');
+}
+ 
+
+
 
 function setup() {
   createCanvas(1200, 480);
@@ -22,7 +32,6 @@ function setup() {
     boarder.rects = _rects;
     cookies = _cookies
   });
-
 
   socket.on('mouse', data => {
     fill(0, 0, 255);
@@ -52,14 +61,15 @@ function draw() {
 
 
 
+
   function checkIfEat() {
     for (let j = cookies.length - 1; j >= 0; j--) {
       const cookiesX = cookies[j].x;
       const cookiesY = cookies[j].y;
-      if (Math.abs(player.x+player.r/2 - cookiesX) < 5+player.r/2 && Math.abs(player.y+player.r/2 - cookiesY) < 5+player.r/2) {
+      if (Math.abs(player.x + player.r / 2 - cookiesX) < 5 + player.r / 2 && Math.abs(player.y + player.r / 2 - cookiesY) < 5 + player.r / 2) {
         console.log(j);
         cookies.splice(j, 1);
-        socket.emit("eated", j,player.x,player.y);
+        socket.emit("eated", j, player.x, player.y);
         player.eat()
       }
     }
@@ -78,11 +88,16 @@ function draw() {
     fill(0)
     fill(random(255), random(255), random(255));
     rect(rects[i].x, rects[i].y, rects[i].r, rects[i].r,);
+    image(dogeplayer, rects[i].x-16 , rects[i].y-16 );
+    dogeplayer.resize(rects[i].r+40, rects[i].r+40);
+
+
   }
 
   for (let i = 0; i < cookies.length; i++) {
     fill(0)
-    ellipse(cookies[i].x, cookies[i].y, cookies[i].r, cookies[i].r,);
+    image(doge, cookies[i].x-16 , cookies[i].y-16 );
+    
   }
 
   let playerData = {
@@ -92,5 +107,15 @@ function draw() {
   }
 
   socket.emit('update', playerData);
+
+  if (frameCount % 60 == 0) {
+    console.log("asdasds");
+    if (player.r > -1 && player.r < 64) {
+      player.r -= 1;
+    }
+    else if (player.r > 64) {
+      player.r -= 3
+    }
+  }
 }
 
