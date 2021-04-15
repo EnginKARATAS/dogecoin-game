@@ -11,7 +11,7 @@ class Boarder {
         this.showRects = function () {
             fill(128, 0, 128);
             for (let i = 0; i < this.rects.length; i++) {
-                text(this.rects[i].id + " :" + this.rects[i].r , this.boarderPos + 14, this.rectY + 10 + i * 10);
+                text(this.rects[i].id + " - score :" + this.rects[i].r , this.boarderPos + 14, this.rectY + 10 + i * 10);
             }
         }
         this.showBoarder = function () {

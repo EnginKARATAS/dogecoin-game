@@ -73,7 +73,6 @@ io.on('connection', socket => {
 
   socket.on("eated", index => {
     cookies.splice(index, 1);
-    cookies.push(new Cookie());
   });
 
   socket.on('start', data => {

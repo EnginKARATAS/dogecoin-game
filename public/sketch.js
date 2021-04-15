@@ -59,7 +59,7 @@ function setup() {
 }
 
 function draw() {
-  background(200, 222, 20);
+  background(155, 222, 50);
   boarder.show();
   player.show();
   player.update(way);
