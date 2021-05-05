@@ -1,7 +1,7 @@
 ## A Doge coin game inspered by dogecoin rising!
 <b>Why I have zero dogecoin. I am unhappy cuz no dogecoin at all</b>
 ![alt  text](1.png)
-<p>so I develop this game for play with another no have doge coin friends</p>
+<h1>so I develop this game for play with another no have doge coin friends</h1>
 ![alt  text](3.png)
 <p>so I develop this game for play with another no have doge coin friends</p>
 ![alt  text](4.png) 
