@@ -5,10 +5,13 @@
  
  so I develop this game for play with another no have doge coin friends 
 ![](4.png) 
-<h1>Where is it(doge dog nonse thing fo me😿)</h1>
- I am a mad developer cuz I made this game but no body play it (it is like shit actually) 
+>Where is it(doge dog nonse thing fo me😿)
+I am a mad developer cuz I made this game but no body play it (it is like shit actually) 
 ![](2.png) 
 perfect arrow keys 
 developed for
 mobile users![alt  text](1.png)
+
+play? no? oky..:(
+https://dogecoin-game.herokuapp.com/
 
