@@ -35,10 +35,10 @@ for (let i = 0; i < 25; i++) {
 }
 
 setInterval(heartbeat, 33);
-setInterval(addCookies,2000);
+setInterval(addCookies,500);
 
 function addCookies(){
-  if (cookies.length < 40) {
+  if (cookies.length < 60) { //number of cookies
     cookies.push(new Cookie());
   }
   
@@ -72,7 +72,10 @@ io.on('connection', socket => {
   });
 
   socket.on("eated", index => {
-    cookies.splice(index, 1);
+    setTimeout(function() {
+      cookies.splice(index, 1);
+    }, 10);
+    
   });
 
   socket.on('start', data => {
@@ -98,8 +101,8 @@ io.on('connection', socket => {
     rect.r = data.r;
   });
 
-  //when mouse message comes, socket.on('mouse',mouseMsg) working
-  socket.on('mouse', mouseMsg)
+  //when mouse message comes, socket.on('mouse',mouseMsg) working//TESTİNG!
+  // socket.on('mouse', mouseMsg)
 
   function mouseMsg(data) {
     socket.broadcast.emit('mouse', data);
