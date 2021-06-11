@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Sockets Example</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="p5.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="p5.functions.js"></script>
@@ -27,10 +27,14 @@
       <button onclick="movedown()">⬇</button>
       <button onclick="moveright()">➡</button><br><br>
     </div>
-    <a href="https://www.github.com/enginkaratas">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;github</a>
+    <div style="display: inline-flex;text-align:center;width:480px;">
+      <a href="https://dogecoin-game.herokuapp.com/" target="blank">Invite Friends<i
+          class="fa fa-share"></i></a>
+          <a href="https://www.linkedin.com/in/engin-karata%C5%9F-060807171/">&emsp;about</a>
+    </div>
+    <a href="https://www.github.com/enginkaratas">&emsp;github</a>
     <a href="mailto:contact@enginkaratas.com">&emsp;mail</a>
-    <a href="https://www.linkedin.com/in/engin-karata%C5%9F-060807171/">&emsp;about</a>
-
+    
   </body>
   <script>
     var socket = io();

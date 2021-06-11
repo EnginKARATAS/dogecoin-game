@@ -20,6 +20,8 @@ function preload() {
 
 function setup() {
   createCanvas(1200, 480);
+
+ 
   // setTimeout(()=>{console.log("world2!")}, 4000)
 
   // for (let i = 0; i < 10; i++) {
@@ -60,6 +62,19 @@ function setup() {
 
 function draw() {
   background(155, 222, 50);
+
+  textStyle(BOLDITALIC);
+  let displayTexts = [
+		[50, 50, "welcome to doge-game.."],
+		[200, 50, "play with friends.."],
+		[550, 50, "github/EnginKARATAS"],
+		[700, 50, "play with ⬅➡⬆⬇ or W A S D keys"]]
+  let [text1, text2, text3, text4] = displayTexts;
+  text(text1[2], text1[0], text1[1]) //text, x, y,
+  text(text2[2], text2[0], text2[1]) //text, x, y,
+  text(text3[2], text3[0], text3[1]) //text, x, y,
+  text(text4[2], text4[0], text4[1]) //text, x, y,
+
   boarder.show();
   player.show();
   player.update(way);
