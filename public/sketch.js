@@ -120,10 +120,10 @@ function draw() {
 
   if (frameCount % 60 == 0) {
     if (player.r > 10 && player.r < 64) {
-      player.r -= 1;
+      // player.r -= 1;
     }
     else if (player.r > 64) {
-      player.r -= 3
+      // player.r -= 3
     }
   }
 }

@@ -8,22 +8,20 @@ class Player {
         this.id=id;
     }
     reduceSize(){
-        this.r -=3
+        // this.r -=0;  
     };
     eat() {
         this.r += 3;
         return true;
     }
     show() {
-        translate(width / 2, height / 2);
-        let newzoom = 128 / player.r;
-        zoom = lerp(zoom, newzoom, 0.1);
-        scale(zoom*0.5);
-        translate(-player.x, -player.y);
-        image(dogeplayer, this.x- 25, this.y - 25);
-        dogeplayer.resize(this.r + 40, this.r + 40);
+        //FPS MODE
+        // translate(width/2, height/2);
+        // scale( 20 /player.r*2);
+        // translate(-player.x,-player.y);
+        //p5 image scaling screw up image quality
+        rect(this.x, this.y, this.r, this.r);
     }
-
     update(way) {
         if (way == 0) {
             this.y -= 15;
