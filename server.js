@@ -69,13 +69,10 @@ io.on('connection', socket => {
         rects.splice(i, 1);
       }
     }
-  });
+  });s
 
   socket.on("eated", index => {
-    setTimeout(function() {
-      cookies.splice(index, 1);
-    }, 10);
-    
+    cookies.splice(index, 1);
   });
 
   socket.on('start', data => {
