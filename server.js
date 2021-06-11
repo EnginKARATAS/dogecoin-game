@@ -69,7 +69,7 @@ io.on('connection', socket => {
         rects.splice(i, 1);
       }
     }
-  });s
+  });
 
   socket.on("eated", index => {
     cookies.splice(index, 1);
