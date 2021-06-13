@@ -38,7 +38,7 @@ setInterval(heartbeat, 33);
 setInterval(addCookies,500);
 
 function addCookies(){
-  if (cookies.length < 60) { //number of cookies
+  if (cookies.length < 45) { //number of cookies
     cookies.push(new Cookie());
   }
   
