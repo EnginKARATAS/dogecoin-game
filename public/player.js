@@ -11,7 +11,7 @@ class Player {
         // this.r -=0;  
     };
     eat() {
-        this.r += 3;
+        this.r += 0.5;
         return true;
     }
     show() {
