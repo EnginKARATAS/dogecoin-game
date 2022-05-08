@@ -1,5 +1,5 @@
 ## A Doge coin game inspered by dogecoin rising!
-Why I have zero dogecoin. I am unhappy cuz no dogecoin at all
+Why I have zero dogecoin :D 
 ![](1.png)
 so I develop this game for play with another no have doge coin friends
 
