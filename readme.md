@@ -7,8 +7,6 @@ I develop this game to play with another friends that havent doge coin
  
 ![](4.png) 
 
-![](2.png) 
-
 ![](1.png)
 
 play? no? oky..:(
