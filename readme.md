@@ -9,7 +9,7 @@ I develop this game to play with another friends that havent doge coin
 
 ![](2.png) 
 
-[alt  text](1.png)
+![](1.png)
 
 play? no? oky..:(
 https://dogecoin-game.herokuapp.com/
