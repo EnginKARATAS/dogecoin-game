@@ -1,12 +1,10 @@
-## A Doge coin game inspered by dogecoin rising!
-Why I have zero dogecoin. Maybe I gain some dogecoin with this game :)
+## A Dogecoin game inspired by dogecoin rising!
+Why do I have zero dogecoin? Maybe I gain some dogecoin with this game :)
 ![](1.png)
-I develop this game to play with another friends that havent doge coin
+I developed this game to play with another friend that haven't dogecoin
 
 ![](3.png)
  
-![](2.png) 
-
-play? no? oky..:(
+play?
 https://dogecoin-game.herokuapp.com/
 
