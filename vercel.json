@@ -8,9 +8,12 @@
     ],
     "routes": [
       {
+        "src": "/",
+        "dest": "/public/index.html"
+      },
+      {
         "src": "/(.*)",
-        "dest": "server.js",
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE",  "OPTIONS"]
+        "dest": "server.js"
       }
     ]
   }
