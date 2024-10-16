@@ -1,6 +1,6 @@
 # Dogecoin Multiplayer Game
 
-### deployment version is removed because every mont I need to pay an amount to heroku. You can add to your local or websocket environment to play !
+Deployment version is removed because every month I need to pay an amount to heroku. You can add to your local or websocket environment to play !
 ## Overview
 Welcome to the Dogecoin Multiplayer Game! This is an interactive, real-time multiplayer game inspired by the rising popularity of Dogecoin. Players control Dogecoin characters and compete to collect as many coins as possible in a shared virtual space.
 
