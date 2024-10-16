@@ -15,13 +15,9 @@ function preload() {
   dogeplayer = loadImage('assets/images/dogeplayer.png');
 }
 
-
-
-
 function setup() {
   createCanvas(1200, 480);
 
- 
   // setTimeout(()=>{console.log("world2!")}, 4000)
 
   // for (let i = 0; i < 10; i++) {
