@@ -11,8 +11,18 @@ function preload() {
   // No images to preload as per the instructions
 }
 
+
+
+
 function setup() {
   createCanvas(1200, 480);
+
+ 
+  // setTimeout(()=>{console.log("world2!")}, 4000)
+
+  // for (let i = 0; i < 10; i++) {
+  //   cookies.push(new Cookie());
+  // }
 
   // Start a socket connection to the server
 
