@@ -1,4 +1,3 @@
-
 var socket = io();
 var boarder;
 var player;
@@ -8,21 +7,12 @@ let zoom = 1;
 let way = 4; //0:up 1:right 2:down 3:left
 let id = "";
 
-let doge;
-let dogeplayer;
 function preload() {
-  doge = loadImage('assets/images/doge.png');
-  dogeplayer = loadImage('assets/images/dogeplayer.png');
+  // No images to preload as per the instructions
 }
 
 function setup() {
   createCanvas(1200, 480);
-
-  // setTimeout(()=>{console.log("world2!")}, 4000)
-
-  // for (let i = 0; i < 10; i++) {
-  //   cookies.push(new Cookie());
-  // }
 
   // Start a socket connection to the server
 
@@ -96,7 +86,7 @@ function draw() {
 
   //------------------------------------------------
   for (let j = 0; j < cookies.length; j++) {
-    ellipse(cookies[j].x, cookies[j].y, cookies[j].r, cookies[j].r);
+    rect(cookies[j].x, cookies[j].y, cookies[j].r * 2, cookies[j].r * 2);
     // if (cookies[j].eats(player)) {
     //   cookies.splice(j, 1);
     //   player.r += 6;
@@ -107,8 +97,7 @@ function draw() {
     fill(0)
     fill(random(255), random(255), random(255));
     if (player.id != rects[i].id) {
-      image(dogeplayer, rects[i].x - 25, rects[i].y - 25);
-      dogeplayer.resize(rects[i].r + 40, rects[i].r + 40);
+      rect(rects[i].x - 25, rects[i].y - 25, rects[i].r + 40, rects[i].r + 40);
     }
 
 
@@ -116,8 +105,7 @@ function draw() {
 
   for (let i = 0; i < cookies.length; i++) {
     fill(0)
-    image(doge, cookies[i].x - 16, cookies[i].y - 16);
-    doge.resize(cookies[i].r + 16, cookies[i].r + 16);
+    rect(cookies[i].x - 16, cookies[i].y - 16, cookies[i].r + 16, cookies[i].r + 16);
 
   }
 
