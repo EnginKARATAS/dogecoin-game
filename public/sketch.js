@@ -1,3 +1,4 @@
+
 var socket = io();
 var boarder;
 var player;
@@ -7,8 +8,11 @@ let zoom = 1;
 let way = 4; //0:up 1:right 2:down 3:left
 let id = "";
 
+let doge;
+let dogeplayer;
 function preload() {
-  // No images to preload as per the instructions
+  doge = loadImage('assets/images/doge.png');
+  dogeplayer = loadImage('assets/images/dogeplayer.png');
 }
 
 
@@ -96,7 +100,7 @@ function draw() {
 
   //------------------------------------------------
   for (let j = 0; j < cookies.length; j++) {
-    rect(cookies[j].x, cookies[j].y, cookies[j].r * 2, cookies[j].r * 2);
+    ellipse(cookies[j].x, cookies[j].y, cookies[j].r, cookies[j].r);
     // if (cookies[j].eats(player)) {
     //   cookies.splice(j, 1);
     //   player.r += 6;
@@ -107,7 +111,8 @@ function draw() {
     fill(0)
     fill(random(255), random(255), random(255));
     if (player.id != rects[i].id) {
-      rect(rects[i].x - 25, rects[i].y - 25, rects[i].r + 40, rects[i].r + 40);
+      image(dogeplayer, rects[i].x - 25, rects[i].y - 25);
+      dogeplayer.resize(rects[i].r + 40, rects[i].r + 40);
     }
 
 
@@ -115,7 +120,8 @@ function draw() {
 
   for (let i = 0; i < cookies.length; i++) {
     fill(0)
-    rect(cookies[i].x - 16, cookies[i].y - 16, cookies[i].r + 16, cookies[i].r + 16);
+    image(doge, cookies[i].x - 16, cookies[i].y - 16);
+    doge.resize(cookies[i].r + 16, cookies[i].r + 16);
 
   }
 
