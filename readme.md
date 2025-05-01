@@ -48,3 +48,5 @@ This game was developed as a fun project inspired by the Doge coin.
 For any queries or suggestions, please open an issue on this repository or contact the maintainer at [contact@enginkaratas.com](mailto:contact@enginkaratas.com).
 
 Enjoy the game and may the best Doge win! 🐕🚀🌕
+
+#dogecoin #DOGE
